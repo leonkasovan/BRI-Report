@@ -1,2 +1,2 @@
 # BRI-Report
-Generate report for BRI from datasource BRISIM
+Lua script for processing BRI Official report

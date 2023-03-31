@@ -1,0 +1,499 @@
+-------------------------------------------------
+DEPOSITO
+-------------------------------------------------
+EDW 216	CI324 - Multi PN - FDs MONTHLY TRIAL BALANCE by PRODUCT TYPE
+periode,branch,curr,currdesc,prodtype,acctno,serialno,princpamt,sname,wdrint,issuedt,matdt,rate,intdisp,textbox22,PN_Customer_Service,PN_RM_Dana,PN_RM_Pinjaman,PN_RM_Merchant,PN_Relationship_Officer,PN_Sales_Person,PN_PAB,PN_RM_Referral,JUMLAH_PN
+ 1. periode
+ 2. kode uker
+ 3. cur code
+ 4. cur desc
+ 5. type
+ 6. acctno
+ 7. fdr srl no
+ 8. principal amount
+ 9. short name
+10. withdrawable int
+11. issue dt
+12. mat dt
+13. int rate
+14. int tenor disp
+15. renew
+17. PN Customer Service
+18. PN RM Dana/Mantri
+19. PN RM Pinjaman
+20. PN RM Merchant
+21. PN Relationship Officer / RM Kredit Menangah
+22. PN Sales Person
+23. PN PAB
+24. PN RM Referral
+25. Jumlah PN Pemasar
+
+DWH 6	CI324(PN) - FDS MONTHLY TRIAL BALANCE BY PRODUCT TYPE (1 ROW)
+periode,branch,curr,currdesc,prodtype,acctno,serialno,princpamt,sname,wdrint,issuedt,matdt,rate,intdisp,textbox22,CFAREF,SNAME_FO
+ 1. periode
+ 2. kode uker
+ 3. cur code
+ 4. cur desc
+ 5. type
+ 6. acctno
+ 7. fdr srl no
+ 8. principal amount
+ 9. short name
+10. withdrawable int
+11. issue dt
+12. mat dt
+13. int rate
+14. int tenor disp
+15. renew
+17. PN PENGELOLA
+18. NAMA PENGELOLA
+
+DWH 26	CI324 - FDS MONTHLY TRIAL BALANCE BY PRODUCT TYPE (1 ROW)
+periode,branch,curr,currdesc,prodtype,acctno,serialno,princpamt,sname,wdrint,issuedt,matdt,rate,intdisp,textbox22
+ 1. periode
+ 2. kode uker
+ 3. cur code
+ 4. cur desc
+ 5. type
+ 6. acctno
+ 7. fdr srl no
+ 8. principal amount
+ 9. short name
+10. withdrawable int
+11. issue dt
+12. mat dt
+13. int rate
+14. int tenor disp
+15. renew
+
+-------------------------------------------------
+GIRO
+-------------------------------------------------
+EDW 176	DI321 - CURRENT ACCOUNT MONTHLY TRIAL BALANCE
+periode,branch,curr,currdesc,cifno,acctno,sccode,status,sname,dlstm6,datop7_dt,textbox1,textbox2,oddlim,accrue,odint,odunac,textbox3,PN_Customer_Service,PN_RM_Dana,PN_RM_Pinjaman,PN_RM_Merchant,PN_Relationship_Officer,PN_Sales_Person,PN_PAB,PN_RM_Referral,JUMLAH_PN		
+ 1. periode
+ 2. uker code
+ 3. curr code
+ 4. curr desc
+ 5. cifno
+ 6. account number
+ 7. product code
+ 8. status
+ 9. short name
+10. dlt
+11. open date
+12. balance
+13. avail balance
+14. limit
+15. cr int
+16. dr int
+17. commintment
+18. avrg balance
+19. PN Customer Service
+20. PN RM Dana/Mantri
+21. PN RM Pinjaman
+22. PN RM Merchant
+23. PN Relationship Officer / RM Kredit Menangah
+24. PN Sales Person
+25. PN PAB
+26. PN RM Referral
+27. JUMLAH PN Pemasar
+
+DWH 7	DI321(PN) - CURRENT ACCOUNT MONTHLY TRIAL BALANCE - ACTIVE (1 ROW)
+periode,branch,curr,currdesc,cifno,acctno,status,sname,dlstm6,textbox1,textbox2,oddlim,accrue,odint,odunac,textbox3,textbox8,textbox14		
+ 1. periode
+ 2. uker code
+ 3. curr code
+ 4. curr desc
+ 5. cifno
+ 6. account number
+ 7. status
+ 8. short name
+ 9. dlt
+10. balance
+11. avail balance
+12. limit
+13. cr int
+14. dr int
+15. commintment
+16. avrg balance
+17. PN   PENGELOLA
+18. NAMA  PENGELOLA
+
+DWH 20	DI321 - CURRENT ACCOUNT MONTHLY TRIAL BALANCE - ACTIVE (1 ROW)
+periode,branch,curr,currdesc,acctno,status,sname,dlstm6,textbox1,textbox2,oddlim,accrue,odint,odunac,textbox3		
+ 1. periode
+ 2. uker code
+ 3. curr code
+ 4. curr desc
+ 5. account number
+ 6. status
+ 7. short name
+ 8. dlt
+ 9. balance
+10. avail balance
+11. limit
+12. cr int
+13. dr int
+14. commintment
+15. avrg balance
+
+
+-------------------------------------------------
+PINJAMAN
+-------------------------------------------------
+DWH 4	LW321 - PN Laporan Kolektibilitas dan Tunggakan Per AO (1 Row)
+textbox61,textbox49,textbox39,textbox26,textbox8,textbox10,textbox141,textbox11,textbox13,textbox16,textbox21,textbox18,textbox27,textbox24,textbox29,textbox32,textbox35,textbox31,textbox22,textbox42,textbox56,textbox76,textbox88,textbox99,textbox111,textbox40,textbox44,CODE,DESCRIPTION,KOL_ADK,AVG,KECAMATAN_T_TINGGAL,KELURAHAN_T_TINGGAL,KODEPOS_T_TINGGAL,KECAMATAN_T_USAHA,KELURAHAN_T_USAHA,KODEPOS_T_USAHA
+ 1. Periode
+ 2. Branch
+ 3. Currency
+ 4. Nama AO
+ 5. LN Type
+ 6. Nomor rekening
+ 7. Nama Debitur
+ 8. Plafond
+ 9. Next Pmt Date
+10. Next Int Pmt Date
+11. Rate
+12. Tgl Menunggak
+13. Tgl Realisasi
+14. Tgl Jatuh tempo
+15. Jangka Waktu
+16. Flag Restruk
+17. CIFNO
+18. Kolektibilitas Lancar
+19. Kolektibilitas DPK
+20. Kolektibilitas Kurang Lancar
+21. Kolektibilitas Diragukan
+22. Kolektibilitas Macet
+23. Tunggakan Pokok
+24. Tunggakan Bunga
+25. Tunggakan Pinalty
+26. PN
+27. Nama PN
+28. Code
+29. Description
+30. Kol_ADK
+31. Avg OS Harian
+32. Kecamatan Tempat Tinggal
+33. Kelurahan Tempat Tinggal
+34. Kode Pos Tempat Tinggal
+35. Kecamatan Tempat Usaha
+36. Kelurahan Tempat Usaha
+37. Kode Pos Tempat Usaha
+
+DWH 28	LW321 - Laporan Kolektibilitas & Tunggakan Per AO (1 Row)
+textbox61,textbox49,textbox39,textbox26,textbox8,textbox10,textbox141,textbox11,textbox13,textbox16,textbox21,textbox18,textbox27,textbox24,textbox29,textbox32,textbox35,textbox31,textbox22,textbox42,textbox56,textbox76,textbox88,textbox99,textbox111
+ 1. Periode
+ 2. Branch
+ 3. Currency
+ 4. Nama AO
+ 5. LN Type
+ 6. Nomor rekening
+ 7. Nama Debitur
+ 8. Plafond
+ 9. Next Pmt Date
+10. Next Int Pmt Date
+11. Rate
+12. Tgl Menunggak
+13. Tgl Realisasi
+14. Tgl Jatuh tempo
+15. Jangka Waktu
+16. Flag Restruk
+17. CIFNO
+18. Kolektibilitas Lancar
+19. Kolektibilitas DPK
+20. Kolektibilitas Kurang Lancar
+21. Kolektibilitas Diragukan
+22. Kolektibilitas Macet
+23. Tunggakan Pokok
+24. Tunggakan Bunga
+25. Tunggakan Pinalty
+
+EDW 89	LW321 - Single PN - Laporan Kolektibilitas & Tunggakan Per AO (Monthly only)
+Textbox47,BRANCH1,CURTYP,Textbox188,LNTYP,Textbox190,SNAME,PLAFON,SEGMEN,PRODUK,Textbox192,RATE_PROGAM1,TGL_AKAD,TGL_MAINTAIN,JGKWKT,FLGRES,CIFNO,LANCAR,DPK,KURANGLANCAR,DIRAGUKAN,MACET,POKOK,BUNGA,PINALTI,PN,Textbox204,CODE,DESCRIPTION,KOL_ADK,Textbox208,KECAMATAN_T_TINGGAL,KELURAHAN_T_TINGGAL,KODEPOS_T_TINGGAL,KECAMATAN_T_USAHA,KELURAHAN_T_USAHA,KODEPOS_T_USAHA,DEFFERED_BUNGA,SAI_TUNGGAKAN,SAI_DEFFERED,FLAG_RESTRUK_COVID
+ 1. PERIODE
+ 2. BRANCH
+ 3. CURRENCY
+ 4. NAMA AO
+ 5. LN TYPE
+ 6. NOMOR REKENING
+ 7. NAMA DEBITUR
+ 8. PLAFON
+ 9. NEXT PMT DATE
+10. NEXT INT PMT DATE
+11. RATE
+12. TGL MENUNGGAK
+13. TGL REALISASI
+14. TGL JATUH TEMPO
+15. JANGKA WAKTU
+16. FLAG RESTRUK
+17. CIFNO
+18. KOLEKTIBILITAS LANCAR
+19. KOLEKTIBILITAS DPK
+20. KOLEKTIBILITAS KURANG LANCAR
+21. KOLEKTIBILITAS DIRAGUKAN
+22. KOLEKTIBILITAS MACET
+23. TUNGGAKAN POKOK
+24. TUNGGAKAN BUNGA
+25. TUNGGAKAN PINALTI
+26. PN
+27. NAMA PN
+28. CODE
+29. DESCRIPTION
+30. KOL ADK
+31. AVG OS HARIAN
+32. KECAMATAN TEMPAT TINGGAL
+33. KELURAHAN TEMPAT TINGGAL
+34. KODEPOS TEMPAT TINGGAL
+35. KECAMATAN TEMPAT USAHA
+36. KELURAHAN TEMPAT USAHA
+37. KODEPOS TEMPAT USAHA
+38. DEFFERED BUNGA
+39. SAI TUNGGAKAN
+40. SAI DEFFERED
+41. FLAG RESTRUK COVID
+
+EDW 90	LW321 - Multi PN - Laporan Kolektibilitas & Tunggakan Per AO (Monthly only)
+Textbox47,BRANCH1,CURTYP,Textbox188,LNTYP,Textbox190,SNAME,PLAFON,SEGMEN,PRODUK,Textbox192,RATE_PROGAM1,TGL_AKAD,TGL_MAINTAIN,JGKWKT,FLGRES,CIFNO,LANCAR,DPK,KURANGLANCAR,DIRAGUKAN,MACET,POKOK,BUNGA,PINALTI,PN_Customer_Service,PN_RM_Dana,PN_RM_Pinjaman,PN_RM_Merchant,PN_Relationship_Officer,PN_Sales_Person,PN_PAB,PN_RM_Referral,JUMLAH_PN,JUMLAH_PN_ALL,CODE,DESCRIPTION,KOL_ADK,Textbox208,KECAMATAN_T_TINGGAL,KELURAHAN_T_TINGGAL,KODEPOS_T_TINGGAL,KECAMATAN_T_USAHA,KELURAHAN_T_USAHA,KODEPOS_T_USAHA,DEFFERED_BUNGA,SAI_TUNGGAKAN,SAI_DEFFERED,FLAG_RESTRUK_COVID
+ 1. PERIODE
+ 2. BRANCH
+ 3. CURRENCY
+ 4. NAMA AO
+ 5. LN TYPE
+ 6. NOMOR REKENING
+ 7. NAMA DEBITUR
+ 8. PLAFON
+ 9. NEXT PMT DATE
+10. NEXT INT PMT DATE
+11. RATE
+12. TGL MENUNGGAK
+13. TGL REALISASI
+14. TGL JATUH TEMPO
+15. JANGKA WAKTU
+16. FLAG RESTRUK
+17. CIFNO
+18. KOLEKTIBILITAS LANCAR
+19. KOLEKTIBILITAS DPK
+20. KOLEKTIBILITAS KURANG LANCAR
+21. KOLEKTIBILITAS DIRAGUKAN
+22. KOLEKTIBILITAS MACET
+23. TUNGGAKAN POKOK
+24. TUNGGAKAN BUNGA
+25. TUNGGAKAN PINALTI
+26. PN CUSTOMER SERVICE
+27. PN RM DANA
+28. PN RM PINJAMAN
+29. PN RM MERCHANT
+30. PN RELATIONSHIP OFFICER
+31. PN SALES PERSON
+32. PN PAB
+33. PN RM REFFERAL
+34. JUMLAH PN
+35. JUMLAH PN ALL
+36. CODE
+37. DESCRIPTION
+38. KOL ADK
+39. AVG OS HARIAN
+40. KECAMATAN TEMPAT TINGGAL
+41. KELURAHAN TEMPAT TINGGAL
+42. KODEPOS TEMPAT TINGGAL
+43. KECAMATAN TEMPAT USAHA
+44. KELURAHAN TEMPAT USAHA
+45. KODEPOS TEMPAT USAHA
+46. DEFFERED BUNGA
+47. SAI TUNGGAKAN
+48. SAI DEFFERED
+49. FLAG RESTRUK COVID
+
+EDW 190	LW321 - Single Row - Laporan Kolektibilitas & Tunggakan Per AO
+textbox61,textbox49,textbox39,textbox26,textbox8,textbox10,textbox141,textbox11,textbox13,textbox16,textbox21,textbox18,textbox27,textbox24,textbox29,textbox32,textbox35,textbox31,textbox22,textbox42,textbox56,textbox76,textbox88,textbox99,textbox111
+ 1. Periode
+ 2. Branch
+ 3. Currency
+ 4. Nama AO
+ 5. LN Type
+ 6. Nomor rekening
+ 7. Nama Debitur
+ 8. Plafond
+ 9. Next Pmt Date
+10. Next Int Pmt Date
+11. Rate
+12. Tgl Menunggak
+13. Tgl Realisasi
+14. Tgl Jatuh tempo
+15. Jangka Waktu
+16. Flag Restruk
+17. CIFNO
+18. Kolektibilitas Lancar
+19. Kolektibilitas DPK
+20. Kolektibilitas Kurang Lancar
+21. Kolektibilitas Diragukan
+22. Kolektibilitas Macet
+23. Tunggakan Pokok
+24. Tunggakan Bunga
+25. Tunggakan Pinalty
+
+EDW 191	LW321 - Laporan Kolektibilitas & Tunggakan Per AO (report is not single row, cant be used)
+
+-------------------------------------------------
+TABUNGAN
+-------------------------------------------------
+EDW 96	DI319 - SAVINGS ACCOUNT MONTHLY TRIAL BALANCE - FLAG BRIMO
+NOMER,ACCTNO,CIFNO,SNAME,JHONAM,DLT,Textbox163,BALANCE,AVAILBALANCE,INTCREDIT,ACCRUEINT,AVRGBALANCE,SCCODE,PN_Customer_Service,PN_RM_Dana,PN_RM_Pinjaman,PN_RM_Merchant,PN_Relationship_Officer,PN_Sales_Person,PN_PAB,PN_RM_Referral,BRIMO_FLAG
+ 1. NO
+ 2. ACCOUNT NUMBER
+ 3. CIFNO
+ 4. NAME
+ 5. OFFICER NAME
+ 6. DLT
+ 7. OPEN DT
+ 8. BALANCE
+ 9. AVAIL BALANCE
+10. INT CREDIT
+11. ACCRUED INT
+12. AVERAGE BALANCE
+13. PROD TYPE
+14. PN Customer Service
+15. PN RM DANA/ MANTRI
+16. PN RM Pinjaman
+17. PN RM Merchant
+18. PN Relationship Officer
+19. PN Sales Person
+20. PN PAB
+21. PN RM Referral
+22. Flag Brimo
+
+EDW 184	DI319 - Single Row - SAVINGS ACCOUNT MONTHLY TRIAL BALANCE - ACTIVE
+textbox16,textbox8,textbox14,textbox22,textbox15,textbox4,textbox38,textbox6,DLT,textbox2,BALANCE,AVAILBALANCE,INTCREDIT,ACCRUEINT,AVRGBALANCE,textbox11
+ 1. periode
+ 2. uker code
+ 3. curr code
+ 4. curr desc
+ 5. account number
+ 6. ciff no
+ 7. short name
+ 8. officer name
+ 9. dlt
+10. Open DT
+11. balance
+12. available balance
+13. int credit
+14. accrued int
+15. average balance
+16. prod code
+
+EDW 185	DI319 - SAVINGS ACCOUNT MONTHLY TRIAL BALANCE - ACTIVE
+timeout!
+
+EDW 212	DI319 - Multi PN - SAVINGS ACCOUNT MONTHLY TRIAL BALANCE
+textbox16,textbox8,textbox14,textbox22,textbox15,textbox4,textbox38,DLT,textbox2,BALANCE,AVAILBALANCE,INTCREDIT,ACCRUEINT,AVRGBALANCE,textbox11,KECAMATAN_T_TINGGAL,KELURAHAN_T_TINGGAL,KODEPOS_T_TINGGAL,KECAMATAN_T_USAHA,KELURAHAN_T_USAHA,KODEPOS_T_USAHA,PN_Customer_Service,PN_RM_Dana,PN_RM_Pinjaman,PN_RM_Merchant,PN_Relationship_Officer,PN_Sales_Person,PN_PAB,PN_RM_Referral,JUMLAH_PN	
+ 1. periode
+ 2. uker code
+ 3. curr code
+ 4. curr desc
+ 5. account number
+ 6. ciff no
+ 7. short name
+ 8. dlt
+ 9. Open DT
+10. balance
+11. available balance
+12. int credit
+13. accrued int
+14. average balance
+15. prod code
+16. Kecamatan Tempat Tinggal
+17. Kelurahan Tempat Tinggal
+18. Kode Pos Tempat Tinggal
+19. Kecamatan Tempat Usaha
+20. Kelurahan Tempat Usaha
+21. Kode Pos Tempat Usaha
+22. PN Customer Service
+23. PN RM Dana/Mantri
+24. PN RM Pinjaman
+25. PN RM Merchant
+26. PN Relationship Officer / RM Kredit Menangah
+27. PN Sales Person
+28. PN PAB
+29. PN RM Referral
+30. JUMLAH PN Pemasar
+
+DWH 1	DI319 - SAVINGS ACCOUNT MONTHLY TRIAL BALANCE - MULTI PN
+textbox16,textbox8,textbox14,textbox22,textbox15,textbox4,textbox38,DLT,textbox2,BALANCE,AVAILBALANCE,INTCREDIT,ACCRUEINT,AVRGBALANCE,textbox11,KECAMATAN_T_TINGGAL,KELURAHAN_T_TINGGAL,KODEPOS_T_TINGGAL,KECAMATAN_T_USAHA,KELURAHAN_T_USAHA,KODEPOS_T_USAHA,PN_Customer_Service,PN_RM_Dana,PN_RM_Pinjaman,PN_RM_Merchant,PN_Relationship_Officer,PN_Sales_Person,PN_PAB,PN_RM_Referral,JUMLAH_PN	
+ 1. periode
+ 2. uker code
+ 3. curr code
+ 4. curr desc
+ 5. account number
+ 6. ciff no
+ 7. short name
+ 8. dlt
+ 9. Open DT
+10. balance
+11. available balance
+12. int credit
+13. accrued int
+14. average balance
+15. prod code
+16. Kecamatan Tempat Tinggal
+17. Kelurahan Tempat Tinggal
+18. Kode Pos Tempat Tinggal
+19. Kecamatan Tempat Usaha
+20. Kelurahan Tempat Usaha
+21. Kode Pos Tempat Usaha
+22. PN Customer Service
+23. PN RM Dana/Mantri
+24. PN RM Pinjaman
+25. PN RM Merchant
+26. PN Relationship Officer / RM Kredit Menangah
+27. PN Sales Person
+28. PN PAB
+29. PN RM Referral
+30. JUMLAH PN Pemasar
+
+DWH 2	DI319 - PN SAVINGS ACCOUNT MONTHLY TRIAL BALANCE - ACTIVE (1 ROW)
+textbox16,textbox8,textbox14,textbox22,textbox15,textbox4,textbox38,textbox6,DLT,textbox2,BALANCE,AVAILBALANCE,INTCREDIT,ACCRUEINT,AVRGBALANCE,textbox11,textbox18,textbox23,KECAMATAN_T_TINGGAL,KELURAHAN_T_TINGGAL,KODEPOS_T_TINGGAL,KECAMATAN_T_USAHA,KELURAHAN_T_USAHA,KODEPOS_T_USAHA	
+ 1. periode
+ 2. uker code
+ 3. curr code
+ 4. curr desc
+ 5. account number
+ 6. ciff no
+ 7. short name
+ 8. officer name
+ 9. dlt
+10. Open DT
+11. balance
+12. available balance
+13. int credit
+14. accrued int
+15. average balance
+16. prod code
+17. PN PENGELOLA
+18. NAMA PENGELOLA
+19. Kecamatan Tempat Tinggal
+20. Kelurahan Tempat Tinggal
+21. Kode Pos Tempat Tinggal
+22. Kecamatan Tempat Usaha
+23. Kelurahan Tempat Usaha
+24. Kode Pos Tempat Usaha
+
+DWH 25	DI319 - SAVINGS ACCOUNT MONTHLY TRIAL BALANCE - ACTIVE (1 ROW)
+textbox16,textbox8,textbox14,textbox22,textbox15,textbox4,textbox38,textbox6,DLT,textbox2,BALANCE,AVAILBALANCE,INTCREDIT,ACCRUEINT,AVRGBALANCE,textbox11
+ 1. periode
+ 2. uker code
+ 3. curr code
+ 4. curr desc
+ 5. account number
+ 6. ciff no
+ 7. short name
+ 8. officer name
+ 9. dlt
+10. Open DT
+11. balance
+12. available balance
+13. int credit
+14. accrued int
+15. average balance
+16. prod code

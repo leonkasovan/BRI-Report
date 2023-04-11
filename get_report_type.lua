@@ -6,6 +6,12 @@ local GIRO_HEADER_LIST = {
 {"EDW-176-DI321", "periode,branch,curr,currdesc,cifno,acctno,sccode,status,sname,dlstm6,datop7_dt,textbox1,textbox2,oddlim,accrue,odint,odunac,textbox3,PN_Customer_Service,PN_RM_Dana,PN_RM_Pinjaman,PN_RM_Merchant,PN_Relationship_Officer,PN_Sales_Person,PN_PAB,PN_RM_Referral,JUMLAH_PN"},
 {"EDW-176-DI321v2", "periode,branch,curr,currdesc,cifno,acctno,sccode,status,sname,dlstm6,datop7_dt,textbox1,textbox2,oddlim,accrue,odint,odunac,PN_Customer_Service,PN_RM_Dana,PN_RM_Pinjaman,PN_RM_Merchant,PN_Relationship_Officer,PN_Sales_Person,PN_PAB,PN_RM_Referral,JUMLAH_PN"}
 }
+--EDW-176-DI321 field ke 17 masih sama dengan EDW-176-DI321v2
+--penyesuaian:
+-- EDW-176-DI321 f[1] = EDW-176-DI321v2 f[1]
+-- EDW-176-DI321 f[17] = EDW-176-DI321v2 f[17]
+-- EDW-176-DI321 f[19] = EDW-176-DI321v2 f[18]
+-- EDW-176-DI321 f[27] = EDW-176-DI321v2 f[26]
 
 local TABUNGAN_HEADER_LIST = {
 {"DWH-2-DI319", 	"textbox16,textbox8,textbox14,textbox22,textbox15,textbox4,textbox38,textbox6,DLT,textbox2,BALANCE,AVAILBALANCE,INTCREDIT,ACCRUEINT,AVRGBALANCE,textbox11,textbox18,textbox23,KECAMATAN_T_TINGGAL,KELURAHAN_T_TINGGAL,KODEPOS_T_TINGGAL,KECAMATAN_T_USAHA,KELURAHAN_T_USAHA,KODEPOS_T_USAHA"},

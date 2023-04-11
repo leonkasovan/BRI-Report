@@ -51,8 +51,8 @@ for line in f_lines1(ReportFileName1) do
 	if no == 1 then
 		sep = FindFirstSeparator(line)
 		report1_type = Get_Report_Type(line, ReportFileName1)
-		if report1_type ~= "EDW-176-DI321" then
-			iup.Message("Error","Report yang dipilih harus Report No 176 [DI321 - CURRENT ACCOUNT MONTHLY TRIAL BALANCE] dari EDW Reports dalam format CSV.\nSilahkan download ulang dari BRISIM atau \npilih kembali report yang sesuai.")
+		if report1_type ~= "EDW-176-DI321" and report1_type ~= "EDW-176-DI321v2" then
+			iup.Message("Error","Report yang dipilih harus Report [DI321 - CURRENT ACCOUNT MONTHLY TRIAL BALANCE] dari EDW Reports dalam format CSV.\nSilahkan download ulang dari BRISIM atau \npilih kembali report yang sesuai.")
 			return -1
 		end
 	else

@@ -2,8 +2,39 @@
 -- There is bug in report DI321PN. There are double data. So we have to remove duplicate date. We can use Notepad2 : Edit -> Block -> Sort Lines : Merge Duplicate Line
 -- Interpreter : (Novan's Modified)lua.exe
 -- 20:32 12 May 2022, Rawamangun
+-- 19:06 11 April 2023, Cempaka Putih
 dofile('get_report_type.lua')
 dofile('common.lua')
+
+function get_RM_Kredit(f, report_type)
+	if report_type == "EDW-176-DI321" then 
+		return f[21]
+	elseif report_type == "EDW-176-DI321v2" then 
+		return f[20]
+	else
+		return ""
+	end
+end
+
+function get_RM_Dana(f, report_type)
+	if report_type == "EDW-176-DI321" then 
+		return f[20]
+	elseif report_type == "EDW-176-DI321v2" then 
+		return f[19]
+	else
+		return ""
+	end
+end
+
+function get_JUMLAH_PN(f, report_type)
+	if report_type == "EDW-176-DI321" then 
+		return f[27]
+	elseif report_type == "EDW-176-DI321v2" then 
+		return f[26]
+	else
+		return ""
+	end
+end
 
 local list_RM = {}
 -- output : list of summary account and its officer
@@ -22,7 +53,7 @@ Sumber Data : %m\n
 Pengelola: %l|RM Dana|RM Kredit|\n
 Report DI321 : %f[OPEN|*DI321*.csv;*DI321*.txt;*DI321*.gz|CURRENT|NO|NO]\n
 ]=]
-,"1. Buka Aplikasi BRISIM (https://brisim.bri.co.id)\n2. Pilih: EDW Reports\n3. Pilih: List EDW Report\n4. Pilih No 176. DI321 - CURRENT ACCOUNT MONTHLY TRIAL BALANCE\n6. Download dan Save dalam format CSV", 0, "E:\\BRI-Report\\data\\DI321 MULTI PN no_report 176.csv")
+,"1. Buka Aplikasi BRISIM (https://brisim.bri.co.id)\n2. Pilih: EDW Reports\n3. Pilih: List EDW Report\n4. Pilih No 176. DI321 - CURRENT ACCOUNT MONTHLY TRIAL BALANCE\n6. Download dan Save dalam format CSV", 0, "E:\\Projects\\BRI-Report\\Data CR Raha\\DI321 MULTI PN(10).csv")
 if ReportFileName1 == "" or res == false then
 	print("Please select report to be analized")
 	os.exit(-1)
@@ -58,6 +89,10 @@ for line in f_lines1(ReportFileName1) do
 	else
 		-- process data
 		f = csv.parse(line, sep)
+		if f == nil then
+			iup.Message("Error","Invalid data at row "..no)
+			return -1
+		end
 		if f[1] ~= "" then
 			posisi_report1 = f[1]
 			this_year = string.sub(posisi_report1,7)
@@ -65,9 +100,9 @@ for line in f_lines1(ReportFileName1) do
 			mm = tonumber(string.sub(acc_dateopen,4,5))
 			if string.sub(acc_dateopen,7) == this_year then
 				if pengelola == 1 then
-					acc_RM = f[21]	-- RM Kredit only, pengelola == 1
+					acc_RM = get_RM_Kredit(f, report1_type)	-- RM Kredit only, pengelola == 1
 				else
-					acc_RM = f[20]	-- RM Dana only, pengelola == 0
+					acc_RM = get_RM_Dana(f, report1_type)	-- RM Dana only, pengelola == 0
 				end
 				acc_balance = string.gsub(string.sub(f[12], 1, #f[12]-3), ",", "")
 				acc_balance = tonumber(acc_balance)
@@ -91,7 +126,7 @@ for line in f_lines1(ReportFileName1) do
 						lRM["total_balance"] = lRM["total_balance"] + acc_balance
 					end
 				else	-- rekening tidak ber PN
-					if f[27]=="0" then	-- rekening tidak ber PN
+					if get_JUMLAH_PN(f, report1_type) == "0" then	-- rekening tidak ber PN
 						local lRM
 						
 						acc_RM = "-"

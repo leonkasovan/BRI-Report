@@ -2,8 +2,49 @@
 -- There is bug in report DI319PN. There are double data. So we have to remove duplicate date. We can use Notepad2 : Edit -> Block -> Sort Lines : Merge Duplicate Line
 -- Interpreter : (Novan's Modified)lua.exe
 -- 20:32 12 May 2022, Rawamangun
+-- 19:06 11 April 2023, Cempaka Putih
 dofile('get_report_type.lua')
 dofile('common.lua')
+
+function get_RM_Kredit(f, report_type)
+	if report_type == "EDW-212-DI319/DWH-1-DI319" then 
+		return f[24]
+	elseif report_type == "EDW-212-DI319/DWH-1-DI319v2" then 
+		return f[23]
+	else
+		return ""
+	end
+end
+
+function get_RM_Dana(f, report_type)
+	if report_type == "EDW-212-DI319/DWH-1-DI319" then 
+		return f[23]
+	elseif report_type == "EDW-212-DI319/DWH-1-DI319v2" then 
+		return f[22]
+	else
+		return ""
+	end
+end
+
+function get_JUMLAH_PN(f, report_type)
+	if report_type == "EDW-212-DI319/DWH-1-DI319" then 
+		return f[30]
+	elseif report_type == "EDW-212-DI319/DWH-1-DI319v2" then 
+		return f[29]
+	else
+		return ""
+	end
+end
+
+function get_acc_type(f, report_type)
+	if report_type == "EDW-212-DI319/DWH-1-DI319" then 
+		return xx[15]
+	elseif report_type == "EDW-212-DI319/DWH-1-DI319v2" then 
+		return f[14]
+	else
+		return ""
+	end
+end
 
 local list_RM = {}
 -- output : list of summary account and its officer
@@ -22,7 +63,7 @@ Sumber Data : %m\n
 Pengelola: %l|RM Dana|RM Kredit|\n
 Report DI319 : %f[OPEN|*DI319*.csv;*DI319*.txt;*DI319*.gz|CURRENT|NO|NO]\n
 ]=]
-,"1. Buka Aplikasi BRISIM (https://brisim.bri.co.id)\n2. Pilih: EDW Reports\n3. Pilih: List EDW Report\n4. Pilih No 212. DI319 - Multi PN - SAVINGS ACCOUNT MONTHLY TRIAL BALANCE\n6. Download dan Save dalam format CSV", 0, 'E:\\BRI-Report\\data\\DI319 MULTI PN no_report 212.csv')
+,"1. Buka Aplikasi BRISIM (https://brisim.bri.co.id)\n2. Pilih: EDW Reports\n3. Pilih: List EDW Report\n4. Pilih No 212. DI319 - Multi PN - SAVINGS ACCOUNT MONTHLY TRIAL BALANCE\n6. Download dan Save dalam format CSV", 0, 'E:\\Projects\\BRI-Report\\Data CR Raha\\DI319 MULTI PN(61).csv')
 if ReportFileName1 == "" or res == false then
 	print("Please select report to be analized")
 	os.exit(-1)
@@ -51,7 +92,7 @@ for line in f_lines1(ReportFileName1) do
 	if no == 1 then
 		sep = FindFirstSeparator(line)
 		report1_type = Get_Report_Type(line, ReportFileName1)
-		if report1_type ~= "EDW-212-DI319/DWH-1-DI319" then
+		if report1_type ~= "EDW-212-DI319/DWH-1-DI319" and report1_type ~= "EDW-212-DI319/DWH-1-DI319v2" then
 			iup.Message("Error","Report yang dipilih bukan EDW Report No 212 DI319 - Multi PN - SAVINGS ACCOUNT MONTHLY TRIAL BALANCE (dalam format CSV).\nSilahkan download ulang dari BRISIM atau \npilih kembali report yang sesuai.")
 			return -1
 		end
@@ -65,9 +106,9 @@ for line in f_lines1(ReportFileName1) do
 			mm = tonumber(acc_dateopen:match('%d+'))
 			if string.sub(acc_dateopen,-4) == this_year then
 				if pengelola == 1 then
-					acc_RM = f[24]	-- RM Kredit only, pengelola == 1
+					acc_RM = get_RM_Kredit(f, report1_type)	-- RM Kredit only, pengelola == 1
 				else
-					acc_RM = f[23]	-- RM Dana only, pengelola == 0
+					acc_RM = get_RM_Dana(f, report1_type)	-- RM Dana only, pengelola == 0
 				end
 				acc_balance = string.gsub(string.sub(f[10], 1, #f[10]-3), ",", "")
 				acc_balance = tonumber(acc_balance)
@@ -78,20 +119,20 @@ for line in f_lines1(ReportFileName1) do
 						list_RM[acc_RM] = {0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','','','','','','',''}
 						lRM = list_RM[acc_RM]
 						lRM[mm] = 1
-						lRM[mm+12] = string.format("%s - %s [%s]",f[5] ,f[7], f[15])
+						lRM[mm+12] = string.format("%s - %s [%s]",f[5] ,f[7], get_acc_type(f, report1_type))
 						lRM["total_account"] = 1
 						lRM["total_balance"] = acc_balance
 					else
 						lRM = list_RM[acc_RM]
 						lRM[mm] = lRM[mm] + 1
 						-- if #(lRM[mm+12]) < 1024 then
-							lRM[mm+12] = lRM[mm+12]..'&#13;'..string.format("%s - %s [%s]",f[5] ,f[7], f[15])
+							lRM[mm+12] = lRM[mm+12]..'&#13;'..string.format("%s - %s [%s]",f[5] ,f[7], get_acc_type(f, report1_type))
 						-- end
 						lRM["total_account"] = lRM["total_account"] + 1
 						lRM["total_balance"] = lRM["total_balance"] + acc_balance
 					end
 				else	-- rekening tidak ber PN
-					if f[30]=="0" then	-- rekening tidak ber PN
+					if get_JUMLAH_PN(f, report1_type) == "0" then	-- rekening tidak ber PN
 						local lRM
 
 						acc_RM = "-"
@@ -99,23 +140,23 @@ for line in f_lines1(ReportFileName1) do
 							list_RM[acc_RM] = {0,0,0,0,0,0,0,0,0,0,0,0,'','','','','','','','','','','',''}
 							lRM = list_RM[acc_RM]
 							lRM[mm] = 1
-							lRM[mm+12] = string.format("%s - %s [%s]",f[5] ,f[7], f[15])
+							lRM[mm+12] = string.format("%s - %s [%s]",f[5] ,f[7], get_acc_type(f, report1_type))
 							lRM["total_account"] = 1
 							lRM["total_balance"] = acc_balance
 							os.remove(OUTPUT_NO_PN_FILE)
 							save_file(string.format("sep=%s\nNo%sRekening%sNama%sType%sSaldo\n%03d%s%s%s%s%s%s%s%s\n"
 							, output_sep, output_sep, output_sep, output_sep, output_sep
-							, lRM["total_account"], output_sep, f[5], output_sep, f[7], output_sep, f[15], output_sep, format_number(acc_balance))
+							, lRM["total_account"], output_sep, f[5], output_sep, f[7], output_sep, get_acc_type(f, report1_type), output_sep, format_number(acc_balance))
 							, OUTPUT_NO_PN_FILE)
 						else
 							lRM = list_RM[acc_RM]
 							lRM[mm] = lRM[mm] + 1
 							-- if #(lRM[mm+12]) < 1024 then
-								lRM[mm+12] = lRM[mm+12]..'&#13;'..string.format("%s - %s [%s]",f[5] ,f[7], f[15])
+								lRM[mm+12] = lRM[mm+12]..'&#13;'..string.format("%s - %s [%s]",f[5] ,f[7], get_acc_type(f, report1_type))
 							-- end
 							lRM["total_account"] = lRM["total_account"] + 1
 							lRM["total_balance"] = lRM["total_balance"] + acc_balance
-							save_file(string.format("%03d%s%s%s%s%s%s%s%s\n", lRM["total_account"], output_sep, f[5], output_sep, f[7], output_sep, f[15], output_sep, format_number(acc_balance)), OUTPUT_NO_PN_FILE)
+							save_file(string.format("%03d%s%s%s%s%s%s%s%s\n", lRM["total_account"], output_sep, f[5], output_sep, f[7], output_sep, get_acc_type(f, report1_type), output_sep, format_number(acc_balance)), OUTPUT_NO_PN_FILE)
 						end
 					end
 				end

@@ -122,9 +122,9 @@ for line in f_lines2(ReportFileName2) do
 				acc_type_tenor = f[5].." - "..f[14]
 				acc_maturity = f[12]
 				if is_foreign == 1 then acc_name = f[9]..' <b>'..f[3]..'</b>' else acc_name = f[9] end
-				if report1_type == "EDW-216-CI324" then
+				if report2_type == "EDW-216-CI324" then
 					acc_officer = Rekap_Officer(f[16],f[17],f[18],f[19],f[20],f[21],f[22],f[23])
-				elseif report1_type == "DWH-6-CI324" then
+				elseif report2_type == "DWH-6-CI324" then
 					acc_officer = f[17]
 				else
 					acc_officer = ''

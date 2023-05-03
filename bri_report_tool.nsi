@@ -2,7 +2,7 @@
 
 ; HM NIS Edit Wizard helper defines
 !define PRODUCT_NAME "BRI Reporting Tool"
-!define PRODUCT_VERSION "1.8.1"
+!define PRODUCT_VERSION "1.8.3"
 !define PRODUCT_PUBLISHER "Dhani Novan"
 !define PRODUCT_WEB_SITE "http://www.bri.co.id"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\lua.exe"

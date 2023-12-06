@@ -16,14 +16,8 @@ local decimal_sep = nil
 -- true: show internal account number -9x-
 local INCLUDE_IA = false
 
-local res, dummy, ReportFileName1, ReportFileName2, limit_res, is_foreign = iup.GetParam("Pilih Report DI321 dalam Format CSV", nil, [=[
-Sumber Data: %m\n
-Report Posisi Awal: %f[OPEN|*DI321*.csv;*DI321*.gz|CURRENT|NO|NO]\n
-Report Posisi Akhir: %f[OPEN|*DI321*.csv;*DI321*.gz|CURRENT|NO|NO]\n
-Limit Result: %l|10|20|30|50|100|\n
-Mata Uang asing: %b\n
-]=]
-,"1. Buka Aplikasi BRISIM (https://brisim.bri.co.id)\n2. Pilih: EDW Reports\n3. Pilih: List EDW Report\n4. Pilih No 176. DI321 CURRENT ACCOUNT MONTHLY TRIAL BALANCE\n6. Download dan Save dalam format CSV", "C:\\Lua\\data\\20201231 DI321 PN PENGELOLAH.csv.gz","C:\\Lua\\data\\20210130 DI321 PN PENGELOLAH.csv.gz",1, 0)
+local res, dummy, ReportFileName1, ReportFileName2, Filter_PN, limit_res, is_foreign = iup.GetParam("Pilih Report DI321 dalam Format CSV", nil, "Sumber Data: %m\n Report Posisi Awal: %f[OPEN|*DI321*.csv;*DI321*.gz|CURRENT|NO|NO]\n Report Posisi Akhir: %f[OPEN|*DI321*.csv;*DI321*.gz|CURRENT|NO|NO]\n Personal Number: %s\n Limit Result: %l|10|20|30|50|100|\n Mata Uang asing: %b\n"
+,"1. Buka Aplikasi BRISIM (https://brisim.bri.co.id)\n2. Pilih: EDW Reports\n3. Pilih: List EDW Report\n4. Pilih No 176. DI321 CURRENT ACCOUNT MONTHLY TRIAL BALANCE\n6. Download dan Save dalam format CSV", "D:\\Projects\\BRI-Report\\Data\\Raha\\DI321 MULTI PN(10).csv","D:\\Projects\\BRI-Report\\Data\\Raha\\DI321 MULTI PN(11).csv","", 1, 0)
 
 data_type, output_sep = ReadRegistry('HKCU\\Control Panel\\International', 'sList')
 data_type, decimal_sep = ReadRegistry('HKCU\\Control Panel\\International', 'sDecimal')
@@ -110,6 +104,9 @@ for line in f_lines1(ReportFileName1) do
 				else
 					acc_balance = f[10]
 				end
+				if acc_balance == nil then
+					print("Error:", line)
+				end
 				acc_balance = string.gsub(string.sub(acc_balance, 1, #acc_balance-3), ",", "")
 				acc_balance = tonumber(acc_balance)
 				
@@ -125,7 +122,9 @@ for line in f_lines1(ReportFileName1) do
 					acc_officer = ''
 				end
 				if INCLUDE_IA or (string.sub(acc_no,-3,-3) ~= "9") then
-					list_acc[acc_no] = {acc_cif, acc_name, acc_balance, 0, -acc_balance, acc_officer}
+					if acc_officer:find(Filter_PN,1,true) ~= nil then
+						list_acc[acc_no] = {acc_cif, acc_name, acc_balance, 0, -acc_balance, acc_officer}
+					end
 				end
 			end
 		end
@@ -202,7 +201,9 @@ for line in f_lines2(ReportFileName2) do
 						list_acc[acc_no][5] = list_acc[acc_no][4] - list_acc[acc_no][3]
 						list_acc[acc_no][6] = acc_officer
 					else
-						list_acc[acc_no] = {acc_cif, acc_name, 0, acc_balance, acc_balance, acc_officer}
+						if acc_officer:find(Filter_PN,1,true) ~= nil then
+							list_acc[acc_no] = {acc_cif, acc_name, 0, acc_balance, acc_balance, acc_officer}
+						end
 						-- fo:write(string.format('%s%s"%s"%s"%s"%s%s\n', 
 							-- format_account(acc_no), output_sep,
 							-- acc_name, output_sep,

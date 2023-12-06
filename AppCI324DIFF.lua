@@ -12,14 +12,8 @@ local f_lines2 = nil
 local output_sep = nil
 local decimal_sep = nil
 
-local res, dummy, ReportFileName1, ReportFileName2, limit_res, is_foreign = iup.GetParam("Pilih Report CI324 PN dalam Format CSV", nil, [=[
-Sumber Data: %m\n
-Report Posisi Awal: %f[OPEN|*CI324*.csv;*CI324*.gz|CURRENT|NO|NO]\n
-Report Posisi Akhir: %f[OPEN|*CI324*.csv;*CI324*.gz|CURRENT|NO|NO]\n
-Limit Result: %l|10|20|30|50|100|\n
-Mata Uang asing: %b\n
-]=]
-,"1. Buka Aplikasi BRISIM (https://brisim.bri.co.id)\n2. Pilih: EDW Reports\n3. Pilih: List EDW Report\n4. Pilih No 216 CI324 - Multi PN - FDs MONTHLY TRIAL BALANCE by PRODUCT TYPE\n6. Download dan Save dalam format CSV", "C:\\Lua\\data\\20201231 CI324Modif.csv.gz","C:\\Lua\\data\\20210131 CI324Modif.csv.gz",1,0)
+local res, dummy, ReportFileName1, ReportFileName2, Filter_PN, limit_res, is_foreign = iup.GetParam("Pilih Report CI324 PN dalam Format CSV", nil, "Sumber Data: %m\n Report Posisi Awal: %f[OPEN|*CI324*.csv;*CI324*.gz|CURRENT|NO|NO]\n Report Posisi Akhir: %f[OPEN|*CI324*.csv;*CI324*.gz|CURRENT|NO|NO]\n Personal Number: %s\n Limit Result: %l|10|20|30|50|100|\n Mata Uang asing: %b\n"
+,"1. Buka Aplikasi BRISIM (https://brisim.bri.co.id)\n2. Pilih: EDW Reports\n3. Pilih: List EDW Report\n4. Pilih No 216 CI324 - Multi PN - FDs MONTHLY TRIAL BALANCE by PRODUCT TYPE\n6. Download dan Save dalam format CSV", "C:\\Lua\\data\\20201231 CI324Modif.csv.gz","C:\\Lua\\data\\20210131 CI324Modif.csv.gz","",1,0)
 
 data_type, output_sep = ReadRegistry('HKCU\\Control Panel\\International', 'sList')
 data_type, decimal_sep = ReadRegistry('HKCU\\Control Panel\\International', 'sDecimal')
@@ -90,7 +84,9 @@ for line in f_lines1(ReportFileName1) do
 				end
 				acc_balance = string.gsub(string.sub(f[8], 1, #f[8]-3), ",", "")
 				acc_balance = tonumber(acc_balance)
-				list_acc[acc_no] = {acc_type_tenor, acc_maturity, acc_name, acc_balance, 0, -acc_balance, acc_officer}
+				if acc_officer:find(Filter_PN,1,true) ~= nil then
+					list_acc[acc_no] = {acc_type_tenor, acc_maturity, acc_name, acc_balance, 0, -acc_balance, acc_officer}
+				end
 			end
 		end
 	end
@@ -102,8 +98,8 @@ print('Loading data from '..ReportFileName2)
 no = 1
 sep = ','
 posisi_report2 = ''
-fo = io.open(OUTPUT_FILE.."_NEW.csv", "w")
-fo:write('Rekening'..output_sep..'Tipe'..output_sep..'Nama'..output_sep..'Tanggal Buka'..output_sep..'Jatuh Tempo'..output_sep..'Rate'..output_sep..'Tenor'..output_sep..'Rollover'..output_sep..'Currency'..output_sep..'Pokok'..output_sep..'PN_Pengelola\n')
+-- fo = io.open(OUTPUT_FILE.."_NEW.csv", "w")
+-- fo:write('Rekening'..output_sep..'Tipe'..output_sep..'Nama'..output_sep..'Tanggal Buka'..output_sep..'Jatuh Tempo'..output_sep..'Rate'..output_sep..'Tenor'..output_sep..'Rollover'..output_sep..'Currency'..output_sep..'Pokok'..output_sep..'PN_Pengelola\n')
 for line in f_lines2(ReportFileName2) do
 	-- only process line begin with number, skipping header
 	if no == 1 then
@@ -135,28 +131,30 @@ for line in f_lines2(ReportFileName2) do
 					list_acc[acc_no][5] = acc_balance
 					list_acc[acc_no][6] = list_acc[acc_no][5] - list_acc[acc_no][4]
 				else
-					list_acc[acc_no] = {acc_type_tenor, acc_maturity, acc_name, 0, acc_balance, acc_balance, acc_officer}
-					issuedt = csv.parse(f[11],'/')
-					matdt = csv.parse(f[12],'/')
-					fo:write(string.format('%s%s%s%s"%s"%s%s/%s/%s%s%s/%s/%s%s"%s"%s%s%s%s%s%s%s"%s"%s%s\n', 
-						format_account(acc_no), output_sep,
-						f[5], output_sep,
-						acc_name, output_sep,
-						issuedt[1], issuedt[2], issuedt[3], output_sep,
-						matdt[1], matdt[2], matdt[3], output_sep, 
-						f[13]:gsub('%.',decimal_sep), output_sep,
-						f[14], output_sep,
-						f[15], output_sep,
-						f[3], output_sep,
-						format_number(acc_balance), output_sep,
-						acc_officer))
+					if acc_officer:find(Filter_PN,1,true) ~= nil then
+						list_acc[acc_no] = {acc_type_tenor, acc_maturity, acc_name, 0, acc_balance, acc_balance, acc_officer}
+					end
+					-- issuedt = csv.parse(f[11],'/')
+					-- matdt = csv.parse(f[12],'/')
+					-- fo:write(string.format('%s%s%s%s"%s"%s%s/%s/%s%s%s/%s/%s%s"%s"%s%s%s%s%s%s%s"%s"%s%s\n', 
+						-- format_account(acc_no), output_sep,
+						-- f[5], output_sep,
+						-- acc_name, output_sep,
+						-- issuedt[1], issuedt[2], issuedt[3], output_sep,
+						-- matdt[1], matdt[2], matdt[3], output_sep, 
+						-- f[13]:gsub('%.',decimal_sep), output_sep,
+						-- f[14], output_sep,
+						-- f[15], output_sep,
+						-- f[3], output_sep,
+						-- format_number(acc_balance), output_sep,
+						-- acc_officer))
 				end
 			end
 		end
 	end
 	no = no + 1
 end
-fo:close()
+-- fo:close()
 
 print('Sorting descending')
 sorted_list_acc = {}

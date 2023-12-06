@@ -12,14 +12,8 @@ local f_lines2 = nil
 local output_sep = nil
 local decimal_sep = nil
 
-local res, dummy, ReportFileName1, ReportFileName2, limit_res, is_foreign = iup.GetParam("Pilih Report DI319 dalam Format CSV (Sumber: DWH)", nil, [=[
-Sumber Data: %m\n
-Report Posisi Awal: %f[OPEN|*DI319*.csv;*DI319*.gz|CURRENT|NO|NO]\n
-Report Posisi Akhir: %f[OPEN|*DI319*.csv;*DI319*.gz|CURRENT|NO|NO]\n
-Limit Result: %l|10|20|30|50|100|\n
-Mata Uang asing: %b\n
-]=]
-,"1. Buka Aplikasi BRISIM (https://brisim.bri.co.id)\n2. Pilih: EDW Reports\n3. Pilih: List EDW Report\n4. Pilih No 212. DI319 - Multi PN - SAVINGS ACCOUNT MONTHLY TRIAL BALANCE\n6. Download dan Save dalam format CSV", "C:\\Lua\\data\\20210131 DI319 MULTI PN.csv.gz","C:\\Lua\\data\\20210225 DI319 MULTI PN.csv.gz",1,0)
+local res, dummy, ReportFileName1, ReportFileName2, Filter_PN, limit_res, is_foreign = iup.GetParam("Pilih Report DI319 dalam Format CSV (Sumber: DWH)", nil, "Sumber Data: %m\nReport Posisi Awal: %f[OPEN|*DI319*.csv;*DI319*.gz|CURRENT|NO|NO]\nReport Posisi Akhir: %f[OPEN|*DI319*.csv;*DI319*.gz|CURRENT|NO|NO]\nPersonal Number: %s\nLimit Result: %l|10|20|30|50|100|\nMata Uang asing: %b\n"
+,"1. Buka Aplikasi BRISIM (https://brisim.bri.co.id)\n2. Pilih: EDW Reports\n3. Pilih: List EDW Report\n4. Pilih No 212. DI319 - Multi PN - SAVINGS ACCOUNT MONTHLY TRIAL BALANCE\n6. Download dan Save dalam format CSV", "D:\\Projects\\BRI-Report\\Data\\Raha\\DI319 MULTI PN(61).csv","D:\\Projects\\BRI-Report\\Data\\Raha\\DI319 MULTI PN(62).csv","",1,0)
 
 data_type, output_sep = ReadRegistry('HKCU\\Control Panel\\International', 'sList')
 data_type, decimal_sep = ReadRegistry('HKCU\\Control Panel\\International', 'sDecimal')
@@ -113,7 +107,9 @@ for line in f_lines1(ReportFileName1) do
 				acc_balance = string.gsub(string.sub(acc_balance, 1, #acc_balance-3), ",", "")
 				acc_balance = tonumber(acc_balance)
 				
-				list_acc[acc_no] = {acc_cif, acc_name, acc_balance, 0, -acc_balance, acc_officer}
+				if acc_officer:find(Filter_PN,1,true) ~= nil then
+					list_acc[acc_no] = {acc_cif, acc_name, acc_balance, 0, -acc_balance, acc_officer}
+				end
 			end
 		end
 	end
@@ -181,7 +177,9 @@ for line in f_lines2(ReportFileName2) do
 					list_acc[acc_no][5] = list_acc[acc_no][4] - list_acc[acc_no][3]
 					list_acc[acc_no][6] = acc_officer
 				else
-					list_acc[acc_no] = {acc_cif, acc_name, 0, acc_balance, acc_balance, acc_officer}
+					if acc_officer:find(Filter_PN,1,true) ~= nil then
+						list_acc[acc_no] = {acc_cif, acc_name, 0, acc_balance, acc_balance, acc_officer}
+					end
 					-- if report2_type == "EDW-212-DI319/DWH-1-DI319" then
 						-- dd = csv.parse(f[9],'/')
 						-- fo:write(string.format('%s%s%s%s"%s"%s%s/%s/%s%s"%s"%s%s\n', 

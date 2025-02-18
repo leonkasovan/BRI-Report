@@ -50,8 +50,6 @@ function Get_Report_Type(header, filename)
 		header_list = GIRO_HEADER_LIST
 	elseif filename:match('DI319') ~= nil then
 		header_list = TABUNGAN_HEADER_LIST
-		print("DEBUG", "TABUNGAN_HEADER_LIST")
-		print("DEBUG", "header", header)
 	elseif filename:match('LW321') ~= nil then
 		header_list = PINJAMAN_HEADER_LIST
 	elseif filename:match('CI324') ~= nil then
@@ -66,7 +64,6 @@ function Get_Report_Type(header, filename)
 	header = header:gsub(string.char(0x0D),'')
 	header = header:gsub(string.char(0x0A),'')
 	for i,v in pairs(header_list) do
-	print("DEBUG", "v[2]", v[2])
 		if header == v[2] or header == string.char(0xEF, 0xBB, 0xBF)..v[2] then
 			report_type = v[1]
 		end

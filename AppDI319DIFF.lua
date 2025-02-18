@@ -64,7 +64,9 @@ local report1_type = ''
 local report2_type = ''
 for line in f_lines1(ReportFileName1) do
 	-- process header
-	if no == 1 then
+	if no < 4 then
+		-- skip
+	elseif no == 4 then
 		sep = FindFirstSeparator(line)
 		report1_type = Get_Report_Type(line, ReportFileName1)
 		if report1_type == nil then
@@ -133,7 +135,9 @@ posisi_report2 = ''
 -- fo:write('Rekening'..output_sep..'Tipe'..output_sep..'Nama'..output_sep..'Tanggal Buka'..output_sep..'Saldo'..output_sep..'PN_Pengelola\n')
 for line in f_lines2(ReportFileName2) do
 	-- only process line begin with number, skipping header
-	if no == 1 then
+	if no < 4 then
+		-- skip
+	elseif no == 4 then
 		sep = FindFirstSeparator(line)
 		report2_type = Get_Report_Type(line, ReportFileName2)
 		if report2_type == nil then

@@ -17,7 +17,8 @@ local TABUNGAN_HEADER_LIST = {
 {"DWH-2-DI319", 	"textbox16,textbox8,textbox14,textbox22,textbox15,textbox4,textbox38,textbox6,DLT,textbox2,BALANCE,AVAILBALANCE,INTCREDIT,ACCRUEINT,AVRGBALANCE,textbox11,textbox18,textbox23,KECAMATAN_T_TINGGAL,KELURAHAN_T_TINGGAL,KODEPOS_T_TINGGAL,KECAMATAN_T_USAHA,KELURAHAN_T_USAHA,KODEPOS_T_USAHA"},
 {"DI319MULTIPN", 	"textbox16,textbox8,textbox14,textbox22,textbox15,textbox4,textbox38,textbox6,DLT,textbox2,BALANCE,AVAILBALANCE,INTCREDIT,ACCRUEINT,AVRGBALANCE,textbox11,textbox18,textbox23,KECAMATAN_T_TINGGAL,KELURAHAN_T_TINGGAL,KODEPOS_T_TINGGAL,KECAMATAN_T_USAHA,KELURAHAN_T_USAHA,KODEPOS_T_USAHA,PN_Customer_Service,PN_RM_Dana,PN_RM_Pinjaman,PN_RM_Merchant,PN_Relationship_Officer,PN_Sales_Person,PN_PAB,PN_RM_Referral,JUMLAH_PN"},
 {"EDW-212-DI319/DWH-1-DI319",   "textbox16,textbox8,textbox14,textbox22,textbox15,textbox4,textbox38,DLT,textbox2,BALANCE,AVAILBALANCE,INTCREDIT,ACCRUEINT,AVRGBALANCE,textbox11,KECAMATAN_T_TINGGAL,KELURAHAN_T_TINGGAL,KODEPOS_T_TINGGAL,KECAMATAN_T_USAHA,KELURAHAN_T_USAHA,KODEPOS_T_USAHA,PN_Customer_Service,PN_RM_Dana,PN_RM_Pinjaman,PN_RM_Merchant,PN_Relationship_Officer,PN_Sales_Person,PN_PAB,PN_RM_Referral,JUMLAH_PN"},
-{"EDW-212-DI319/DWH-1-DI319v2", "textbox16,textbox8,textbox14,textbox22,textbox15,textbox4,textbox38,DLT,textbox2,BALANCE,AVAILBALANCE,INTCREDIT,ACCRUEINT,textbox11,KECAMATAN_T_TINGGAL,KELURAHAN_T_TINGGAL,KODEPOS_T_TINGGAL,KECAMATAN_T_USAHA,KELURAHAN_T_USAHA,KODEPOS_T_USAHA,PN_Customer_Service,PN_RM_Dana,PN_RM_Pinjaman,PN_RM_Merchant,PN_Relationship_Officer,PN_Sales_Person,PN_PAB,PN_RM_Referral,JUMLAH_PN"}
+{"EDW-212-DI319/DWH-1-DI319v2", "textbox16,textbox8,textbox14,textbox22,textbox15,textbox4,textbox38,DLT,textbox2,BALANCE,AVAILBALANCE,INTCREDIT,ACCRUEINT,textbox11,KECAMATAN_T_TINGGAL,KELURAHAN_T_TINGGAL,KODEPOS_T_TINGGAL,KECAMATAN_T_USAHA,KELURAHAN_T_USAHA,KODEPOS_T_USAHA,PN_Customer_Service,PN_RM_Dana,PN_RM_Pinjaman,PN_RM_Merchant,PN_Relationship_Officer,PN_Sales_Person,PN_PAB,PN_RM_Referral,JUMLAH_PN"},
+{"EDW-2025-DI319", "textbox16,textbox8,textbox14,textbox22,textbox15,textbox4,textbox38,textbox2,BALANCE,AVAILBALANCE,INTCREDIT,ACCRUEINT,AVRGBALANCE,textbox11,PN_SinglePN,PN_Customer_Service,PN_RM_Dana,PN_RM_Pinjaman,PN_RM_Merchant,PN_Relationship_Officer,PN_Sales_Person,PN_PAB,PN_RM_Referral,JUMLAH_PN"}
 }
 --EDW-212-DI319/DWH-1-DI319 field ke 13 masih sama dengan EDW-212-DI319/DWH-1-DI319v2
 --penyesuaian:
@@ -31,7 +32,8 @@ local PINJAMAN_HEADER_LIST = {
 {"DWH-28-LW321", "textbox61,textbox49,textbox39,textbox26,textbox8,textbox10,textbox141,textbox11,textbox13,textbox16,textbox21,textbox18,textbox27,textbox24,textbox29,textbox32,textbox35,textbox31,textbox22,textbox42,textbox56,textbox76,textbox88,textbox99,textbox111"},
 {"EDW-89-LW321", "Textbox47,BRANCH1,CURTYP,Textbox188,LNTYP,Textbox190,SNAME,PLAFON,SEGMEN,PRODUK,Textbox192,RATE_PROGAM1,TGL_AKAD,TGL_MAINTAIN,JGKWKT,FLGRES,CIFNO,LANCAR,DPK,KURANGLANCAR,DIRAGUKAN,MACET,POKOK,BUNGA,PINALTI,PN,Textbox204,CODE,DESCRIPTION,KOL_ADK,Textbox208,KECAMATAN_T_TINGGAL,KELURAHAN_T_TINGGAL,KODEPOS_T_TINGGAL,KECAMATAN_T_USAHA,KELURAHAN_T_USAHA,KODEPOS_T_USAHA,DEFFERED_BUNGA,SAI_TUNGGAKAN,SAI_DEFFERED,FLAG_RESTRUK_COVID"},
 {"EDW-90-LW321", "Textbox47,BRANCH1,CURTYP,Textbox188,LNTYP,Textbox190,SNAME,PLAFON,SEGMEN,PRODUK,Textbox192,RATE_PROGAM1,TGL_AKAD,TGL_MAINTAIN,JGKWKT,FLGRES,CIFNO,LANCAR,DPK,KURANGLANCAR,DIRAGUKAN,MACET,POKOK,BUNGA,PINALTI,PN_Customer_Service,PN_RM_Dana,PN_RM_Pinjaman,PN_RM_Merchant,PN_Relationship_Officer,PN_Sales_Person,PN_PAB,PN_RM_Referral,JUMLAH_PN,JUMLAH_PN_ALL,CODE,DESCRIPTION,KOL_ADK,Textbox208,KECAMATAN_T_TINGGAL,KELURAHAN_T_TINGGAL,KODEPOS_T_TINGGAL,KECAMATAN_T_USAHA,KELURAHAN_T_USAHA,KODEPOS_T_USAHA,DEFFERED_BUNGA,SAI_TUNGGAKAN,SAI_DEFFERED,FLAG_RESTRUK_COVID"},
-{"EDW-190-LW321", "textbox61,textbox49,textbox39,textbox26,textbox8,textbox10,textbox141,textbox11,textbox13,textbox16,textbox21,textbox18,textbox27,textbox24,textbox29,textbox32,textbox35,textbox31,textbox22,textbox42,textbox56,textbox76,textbox88,textbox99,textbox111"}
+{"EDW-190-LW321", "textbox61,textbox49,textbox39,textbox26,textbox8,textbox10,textbox141,textbox11,textbox13,textbox16,textbox21,textbox18,textbox27,textbox24,textbox29,textbox32,textbox35,textbox31,textbox22,textbox42,textbox56,textbox76,textbox88,textbox99,textbox111"},
+{"EDW-2025-LW321", "PERIODE,REGION,RGDESC,MAINBR,MBDESC,BRANCH,BRDESC,CURTYP,LNTYP,Textbox190,SNAME,PLAFON,SEGMEN,PRODUK,Textbox192,RATE_PROGAM1,TGL_AKAD,TGL_MAINTAIN,JGKWKT,FLGRES,CIFNO,LANCAR,DPK,KURANGLANCAR,DIRAGUKAN,MACET,POKOK,BUNGA,PINALTI,FREQ2,IPFREQ2,CODE,DESCRIPTION,KOL_ADK,PN_Customer_Service2,PN_RM_Pengelola_1,PN_RM_Pemrakarsa,PN_RM_Referral,PN_RM_RPK,PN_RM_Pengelola_2,PN_Pemutus,PN_CRM,PN_RM_Referral_Naik_Segmentasi"}
 }
 
 local DEPOSITO_HEADER_LIST = {
@@ -48,6 +50,8 @@ function Get_Report_Type(header, filename)
 		header_list = GIRO_HEADER_LIST
 	elseif filename:match('DI319') ~= nil then
 		header_list = TABUNGAN_HEADER_LIST
+		print("DEBUG", "TABUNGAN_HEADER_LIST")
+		print("DEBUG", "header", header)
 	elseif filename:match('LW321') ~= nil then
 		header_list = PINJAMAN_HEADER_LIST
 	elseif filename:match('CI324') ~= nil then
@@ -62,6 +66,7 @@ function Get_Report_Type(header, filename)
 	header = header:gsub(string.char(0x0D),'')
 	header = header:gsub(string.char(0x0A),'')
 	for i,v in pairs(header_list) do
+	print("DEBUG", "v[2]", v[2])
 		if header == v[2] or header == string.char(0xEF, 0xBB, 0xBF)..v[2] then
 			report_type = v[1]
 		end
